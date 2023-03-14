@@ -5,42 +5,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{ecc2588b-758b-4a85-8220-0e3e07ca6403}</UniqueIdentifier>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{608fc85f-063d-414e-863d-90550ba1019d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
+    <Filter Include="소스 파일\Utils">
       <UniqueIdentifier>{93d59b67-54bd-46d4-a44c-12896416b66a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game">
+      <UniqueIdentifier>{ecc2588b-758b-4a85-8220-0e3e07ca6403}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
+      <Filter>소스 파일\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>Utils</Filter>
+      <Filter>소스 파일\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
+      <Filter>소스 파일\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

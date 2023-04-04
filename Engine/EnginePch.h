@@ -14,6 +14,9 @@
 #include <map>
 using namespace std;
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
 #include "d3dx12.h"
 #include "SimpleMath.h"
 #include <d3d12.h>
@@ -26,9 +29,6 @@ using namespace std;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 using namespace Microsoft::WRL;
-
-#include <filesystem>
-namespace fs = std::filesystem;
 
 #include <DirectXTex/DirectXTex.h>
 #include <DirectXTex/DirectXTex.inl>
@@ -69,7 +69,6 @@ enum class CBV_REGISTER : uint8
 
 	END
 };
-
 
 enum class SRV_REGISTER : uint8
 {
@@ -138,6 +137,10 @@ public:								\
 
 struct TransformParams
 {
+	Matrix matWorld;
+	Matrix matView;
+	Matrix matProjection;
+	Matrix matWV;
 	Matrix matWVP;
 };
 

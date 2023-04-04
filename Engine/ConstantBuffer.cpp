@@ -17,6 +17,8 @@ ConstantBuffer::~ConstantBuffer()
 	}
 }
 
+
+
 void ConstantBuffer::Init(CBV_REGISTER reg, uint32 size, uint32 count)
 {
 	_reg = reg;
@@ -88,6 +90,13 @@ void ConstantBuffer::PushData(void* buffer, uint32 size)
 	GEngine->GetTableDescHeap()->SetCBV(cpuHandle, _reg);
 
 	_currentIndex++;
+}
+
+void ConstantBuffer::SetGlobalData(void* buffer, uint32 size)
+{
+	assert(_elementSize == ((size + 255) & ~255));
+	::memcpy(&_mappedBuffer[0], buffer, size);
+	CMD_LIST->SetGraphicsRootConstantBufferView(0, GetGpuVirtualAddress(0));
 }
 
 D3D12_GPU_VIRTUAL_ADDRESS ConstantBuffer::GetGpuVirtualAddress(uint32 index)

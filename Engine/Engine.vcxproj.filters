@@ -114,6 +114,9 @@
     <ClInclude Include="Resources.h">
       <Filter>Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Object\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -200,15 +203,22 @@
     <ClCompile Include="Resources.cpp">
       <Filter>Manager</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="..\Resources\Shader\default.hlsl">
-      <Filter>Shader</Filter>
-    </FxCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Object\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>Utils</Filter>
+    </None>
+    <None Include="..\Resources\Shader\params.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Resources\Shader\utils.hlsli">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="..\Resources\Shader\default.hlsli">
+      <Filter>Shader</Filter>
     </None>
   </ItemGroup>
 </Project>

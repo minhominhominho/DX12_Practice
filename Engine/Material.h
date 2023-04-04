@@ -16,8 +16,8 @@ struct MaterialParams
 	void SetInt(uint8 index, int32 value) { intParams[index] = value; }
 	void SetFloat(uint8 index, float value) { floatParams[index] = value; }
 
-	array<int32, MATERIAL_INT_COUNT> intParams = {0, 0, 0, 0, 0};
-	array<float, MATERIAL_FLOAT_COUNT> floatParams = {0, 0, 0, 0, 0};
+	array<int32, MATERIAL_INT_COUNT> intParams;
+	array<float, MATERIAL_FLOAT_COUNT> floatParams;
 };
 
 class Material : public Object
@@ -33,7 +33,7 @@ public:
 	void SetFloat(uint8 index, float value) { _params.SetFloat(index, value); }
 	void SetTexture(uint8 index, shared_ptr<Texture> texture) { _textures[index] = texture; }
 
-	void Update();
+	void PushData();
 
 private:
 	shared_ptr<Shader>	_shader;

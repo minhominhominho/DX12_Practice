@@ -12,7 +12,7 @@ struct LightInfo
 {
     LightColor  color;
     float4	    position;
-    float4	    direction; 
+    float4	    direction;
     int		    lightType;
     float	    range;
     float	    angle;
@@ -47,6 +47,11 @@ cbuffer MATERIAL_PARAMS : register(b2)
     float   g_float_2;
     float   g_float_3;
     float   g_float_4;
+    int     g_tex_on_0;
+    int     g_tex_on_1;
+    int     g_tex_on_2;
+    int     g_tex_on_3;
+    int     g_tex_on_4;
 };
 
 Texture2D g_tex_0 : register(t0);

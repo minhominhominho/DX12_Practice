@@ -31,7 +31,8 @@ void Texture::CreateTexture(const wstring& path)
 		::LoadFromWICFile(path.c_str(), WIC_FLAGS_NONE, nullptr, _image);
 
 	HRESULT hr = ::CreateTexture(DEVICE.Get(), _image.GetMetadata(), &_tex2D);
-	assert(SUCCEEDED(hr));
+	if (FAILED(hr))
+		assert(nullptr);
 
 	vector<D3D12_SUBRESOURCE_DATA> subResources;
 
@@ -41,7 +42,8 @@ void Texture::CreateTexture(const wstring& path)
 						 _image.GetMetadata(),
 						 subResources);
 
-	assert(SUCCEEDED(hr));
+	if (FAILED(hr))
+		assert(nullptr);
 
 	const uint64 bufferSize = ::GetRequiredIntermediateSize(_tex2D.Get(), 0, static_cast<uint32>(subResources.size()));
 
@@ -57,7 +59,8 @@ void Texture::CreateTexture(const wstring& path)
 		nullptr,
 		IID_PPV_ARGS(textureUploadHeap.GetAddressOf()));
 
-	assert(SUCCEEDED(hr));
+	if (FAILED(hr))
+		assert(nullptr);
 
 	::UpdateSubresources(RESOURCE_CMD_LIST.Get(),
 						 _tex2D.Get(),

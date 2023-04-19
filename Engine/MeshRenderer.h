@@ -10,10 +10,10 @@ public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
 
+	shared_ptr<Material> GetMaterial() { return _material; }
+
 	void SetMesh(shared_ptr<Mesh> mesh) { _mesh = mesh; }
 	void SetMaterial(shared_ptr<Material> material) { _material = material; }
-
-	virtual void Update() override { Render(); }
 
 	void Render();
 

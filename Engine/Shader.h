@@ -6,6 +6,7 @@ enum class SHADER_TYPE : uint8
 	DEFERRED,
 	FORWARD,
 	LIGHTING,
+	COMPUTE,
 };
 
 enum class RASTERIZER_TYPE : uint8
@@ -50,7 +51,9 @@ public:
 	Shader();
 	virtual ~Shader();
 
-	void Init(const wstring& path, ShaderInfo info = ShaderInfo(), const string& vs = "VS_Main", const string& ps = "PS_Main");
+	void CreateGraphicsShader(const wstring& path, ShaderInfo info = ShaderInfo(), const string& vs = "VS_Main", const string& ps = "PS_Main");
+	void CreateComputeShader(const wstring& path, const string& name, const string& version);
+
 	void Update();
 
 	SHADER_TYPE GetShaderType() { return _info.shaderType; }
@@ -62,12 +65,16 @@ private:
 
 private:
 	ShaderInfo _info;
+	ComPtr<ID3D12PipelineState>			_pipelineState;
 
+	// GraphicsShader
 	ComPtr<ID3DBlob>					_vsBlob;
 	ComPtr<ID3DBlob>					_psBlob;
 	ComPtr<ID3DBlob>					_errBlob;
+	D3D12_GRAPHICS_PIPELINE_STATE_DESC  _graphicsPipelineDesc = {};
 
-	ComPtr<ID3D12PipelineState>			_pipelineState;
-	D3D12_GRAPHICS_PIPELINE_STATE_DESC  _pipelineDesc = {};
+	// ComputeShader
+	ComPtr<ID3DBlob>					_csBlob;
+	D3D12_COMPUTE_PIPELINE_STATE_DESC   _computePipelineDesc = {};
 };
 

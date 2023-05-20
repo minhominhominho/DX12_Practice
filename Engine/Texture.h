@@ -11,8 +11,8 @@ public:
 
 public:
 	void Create(DXGI_FORMAT format, uint32 width, uint32 height,
-				const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
-				D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor = Vec4());
+		const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
+		D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor = Vec4());
 
 	void CreateFromResource(ComPtr<ID3D12Resource> tex2D);
 
@@ -26,8 +26,12 @@ public:
 	D3D12_CPU_DESCRIPTOR_HANDLE GetSRVHandle() { return _srvHeapBegin; }
 	D3D12_CPU_DESCRIPTOR_HANDLE GetUAVHandle() { return _uavHeapBegin; }
 
+	float GetWidth() { return static_cast<float>(_desc.Width); }
+	float GetHeight() { return static_cast<float>(_desc.Height); }
+
 private:
 	ScratchImage			 		_image;
+	D3D12_RESOURCE_DESC				_desc;
 	ComPtr<ID3D12Resource>			_tex2D;
 
 	ComPtr<ID3D12DescriptorHeap>	_srvHeap;

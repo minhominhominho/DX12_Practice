@@ -77,6 +77,13 @@ void Shader::CreateGraphicsShader(const wstring& path, ShaderInfo info, const st
 		_graphicsPipelineDesc.NumRenderTargets = 1;
 		_graphicsPipelineDesc.RTVFormats[0] = DXGI_FORMAT_R8G8B8A8_UNORM;
 		break;
+	case SHADER_TYPE::COMPUTE:
+		_graphicsPipelineDesc.NumRenderTargets = 0;
+		break;
+	case SHADER_TYPE::SHADOW:
+		_graphicsPipelineDesc.NumRenderTargets = 1;
+		_graphicsPipelineDesc.RTVFormats[0] = DXGI_FORMAT_R32_FLOAT;
+		break;
 	}
 
 	switch (info.rasterizerType)
@@ -191,7 +198,7 @@ void Shader::CreateShader(const wstring& path, const string& name, const string&
 #endif
 
 	if (FAILED(::D3DCompileFromFile(path.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-									, name.c_str(), version.c_str(), compileFlag, 0, &blob, &_errBlob)))
+		, name.c_str(), version.c_str(), compileFlag, 0, &blob, &_errBlob)))
 	{
 		::MessageBoxA(nullptr, "Shader Create Failed !", nullptr, MB_OK);
 	}

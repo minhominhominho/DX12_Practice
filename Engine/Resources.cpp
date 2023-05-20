@@ -247,8 +247,8 @@ shared_ptr<Mesh> Resources::LoadSphereMesh()
 }
 
 shared_ptr<Texture> Resources::CreateTexture(const wstring& name, DXGI_FORMAT format, uint32 width, uint32 height,
-											 const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
-											 D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor)
+	const D3D12_HEAP_PROPERTIES& heapProperty, D3D12_HEAP_FLAGS heapFlags,
+	D3D12_RESOURCE_FLAGS resFlags, Vec4 clearColor)
 {
 	shared_ptr<Texture> texture = make_shared<Texture>();
 	texture->Create(format, width, height, heapProperty, heapFlags, resFlags, clearColor);
@@ -393,6 +393,20 @@ void Resources::CreateDefaultShader()
 		shader->CreateComputeShader(L"..\\Resources\\Shader\\particle.fx", "CS_Main", "cs_5_0");
 		Add<Shader>(L"ComputeParticle", shader);
 	}
+
+	// Shadow
+	{
+		ShaderInfo info =
+		{
+			SHADER_TYPE::SHADOW,
+			RASTERIZER_TYPE::CULL_BACK,
+			DEPTH_STENCIL_TYPE::LESS,
+		};
+
+		shared_ptr<Shader> shader = make_shared<Shader>();
+		shader->CreateGraphicsShader(L"..\\Resources\\Shader\\shadow.fx", info);
+		Add<Shader>(L"Shadow", shader);
+	}
 }
 
 void Resources::CreateDefaultMaterial()
@@ -475,5 +489,13 @@ void Resources::CreateDefaultMaterial()
 		material->SetTexture(0, texture);
 		material->SetTexture(1, texture2);
 		Add<Material>(L"GameObject", material);
+	}
+
+	// Shadow
+	{
+		shared_ptr<Shader> shader = GET_SINGLE(Resources)->Get<Shader>(L"Shadow");
+		shared_ptr<Material> material = make_shared<Material>();
+		material->SetShader(shader);
+		Add<Material>(L"Shadow", material);
 	}
 }

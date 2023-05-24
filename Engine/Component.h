@@ -8,6 +8,7 @@ enum class COMPONENT_TYPE : uint8
 	CAMERA,
 	LIGHT,
 	PARTICLE_SYSTEM,
+	TERRAIN,
 	// ...
 	MONO_BEHAVIOUR,
 	END,
@@ -28,11 +29,11 @@ public:
 	virtual ~Component();
 
 public:
-	virtual void Awake() { }
-	virtual void Start() { }
-	virtual void Update() { }
-	virtual void LateUpdate() { }
-	virtual void FinalUpdate() { }
+	virtual void Awake() {}
+	virtual void Start() {}
+	virtual void Update() {}
+	virtual void LateUpdate() {}
+	virtual void FinalUpdate() {}
 
 public:
 	COMPONENT_TYPE GetType() { return _type; }

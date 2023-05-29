@@ -5,6 +5,7 @@
 #include "Transform.h"
 #include "InstancingBuffer.h"
 #include "Resources.h"
+#include "Animator.h"
 
 MeshRenderer::MeshRenderer() : Component(COMPONENT_TYPE::MESH_RENDERER)
 {
@@ -34,6 +35,13 @@ void MeshRenderer::Render()
 			continue;
 
 		GetTransform()->PushData();
+
+		if (GetAnimator())
+		{
+			GetAnimator()->PushData();
+			material->SetInt(1, 1);
+		}
+
 		material->PushGraphicsData();
 		_mesh->Render(1, i);
 	}
@@ -49,6 +57,13 @@ void MeshRenderer::Render(shared_ptr<InstancingBuffer>& buffer)
 			continue;
 
 		buffer->PushData();
+
+		if (GetAnimator())
+		{
+			GetAnimator()->PushData();
+			material->SetInt(1, 1);
+		}
+
 		material->PushGraphicsData();
 		_mesh->Render(buffer, i);
 	}

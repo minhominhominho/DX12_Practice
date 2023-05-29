@@ -21,6 +21,7 @@ public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
 
+	shared_ptr<Mesh> GetMesh() { return _mesh; }
 	shared_ptr<Material> GetMaterial(uint32 idx = 0) { return _materials[idx]; }
 
 	void SetMesh(shared_ptr<Mesh> mesh) { _mesh = mesh; }
